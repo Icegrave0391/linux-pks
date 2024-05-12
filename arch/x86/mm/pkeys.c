@@ -495,4 +495,10 @@ void pks_update_exception(struct pt_regs *regs, u8 pkey, u8 protection)
 }
 EXPORT_SYMBOL_GPL(pks_update_exception);
 
+u32 get_current_pkrs(void)
+{
+	return this_cpu_read(pkrs_cache);
+}
+EXPORT_SYMBOL_GPL(get_current_pkrs);
+
 #endif /* CONFIG_ARCH_ENABLE_SUPERVISOR_PKEYS */

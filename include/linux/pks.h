@@ -41,6 +41,8 @@ static inline void pks_set_readwrite(u8 pkey)
 typedef bool (*pks_key_callback)(struct pt_regs *regs, unsigned long address,
 				 bool write);
 
+u32 get_current_pkrs(void);
+
 #else /* !CONFIG_ARCH_ENABLE_SUPERVISOR_PKEYS */
 
 static inline bool pks_available(void)
@@ -54,6 +56,11 @@ static inline void pks_update_exception(struct pt_regs *regs,
 					u8 pkey,
 					u8 protection)
 { }
+
+static inline u32 get_current_pkrs(void)
+{
+	return 0;
+}
 
 #endif /* CONFIG_ARCH_ENABLE_SUPERVISOR_PKEYS */
 
